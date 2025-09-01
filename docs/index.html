@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title> Importaciones Mineras</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <div id="bannerMensaje"></div>
+  <h1> Pedidos Minería</h1>
+  <button id="cargarPedidos">Cargar Pedidos</button>
+  <table id="tablaPedidos">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Cliente</th>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Proveedor</th>
+        <th>Fecha</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <h2>Acciones</h2>
+<button id="btnHistorial">📜 Ver Historial</button>
+<button id="btnPDF">⬇️ Exportar PDF</button>
+<button id="btnExcel">⬇️ Exportar Excel</button>
+<button id="btnWord">⬇️ Exportar Word</button>
+
+<div id="resultadoHistorial"></div>
+
+
+  <h2>Inventario</h2>
+<table id="tablaInventario">
+  <thead>
+    <tr>
+      <th>Producto</th>
+      <th>Cantidad Disponible</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+<div class="engranajes">
+  <div class="engranaje"></div>
+  <div class="engranaje"></div>
+  <div class="engranaje"></div>
+</div>
+
+
+  <script src="app.js"></script>
+</body>
+</html>
