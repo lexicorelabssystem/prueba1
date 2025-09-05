@@ -10,21 +10,24 @@ const conversaciones = {};
 const token = process.env.TELEGRAM_TOKEN;
 const bot = new TelegramBot(token, { polling: true });
 
-// ---------- FUNCIONES REUTILIZABLES ----------
-const getInventario = async () => (await fetch("http://localhost:3000/api/inventario")).json();
+// ---------- FUNCIONES REUTILIZABLES ----------}
+
+const BACKEND_URL = process.env.BACKEND_URL; // poner https://lexicorelabs-backend.onrender.com
+
+const getInventario = async () => (await fetch(`${BACKEND_URL}/api/inventario`)).json();
 const getPedidos = async () => {
-  const res = await fetch("http://localhost:3000/pedidos");
+  const res = await fetch(`${BACKEND_URL}/pedidos`);
   const data = await res.json();
   return data.pedidos || [];
 };
 const postPedido = async (pedido) =>
-  (await fetch("http://localhost:3000/api/nuevo-pedido", {
+  (await fetch(`${BACKEND_URL}/api/nuevo-pedido`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(pedido),
   })).json();
 const postInventario = async (producto, cantidad) =>
-  (await fetch("http://localhost:3000/api/inventario/entrada", {
+  (await fetch(`${BACKEND_URL}/api/inventario/entrada`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ producto, cantidad }),
