@@ -50,7 +50,7 @@ bot.onText(/\/stock/, async (msg) => {
 });
 
 const usuariosAutorizados = [6762915467]; // tu ID de Telegram
-const CLAVE_SECRETA = process.env.CLAVE_INVENTARIO; // ejemplo, pon lo que quieras
+const CLAVE_SECRETA = process.env.CLAVE_INVENTARIO; 
 
 bot.onText(/\/agregar (.+) (\d+) (\S+)/, async (msg, match) => {
   const chatId = msg.chat.id;
