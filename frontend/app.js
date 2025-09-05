@@ -1,16 +1,25 @@
+// =============================
+// 📦 Configuración base
+// =============================
+const BASE_URL = "https://lexicorelabs-backend.onrender.com";
+// Para pruebas locales: const BASE_URL = "http://localhost:3000";
+
 const tablaPedidos = document.querySelector("#tablaPedidos tbody");
 const tablaInventario = document.querySelector("#tablaInventario tbody");
 const botonPedidos = document.querySelector("#cargarPedidos");
 
+// =============================
+// 📦 Cargar datos principales
+// =============================
 async function cargarDatos() {
   try {
     // Pedidos
-    const pedidosRes = await fetch("http://localhost:3000/pedidos");
+    const pedidosRes = await fetch(`${BASE_URL}/pedidos`);
     const pedidosData = await pedidosRes.json();
     const pedidos = pedidosData.pedidos || pedidosData;
 
     // Inventario
-    const stockRes = await fetch("http://localhost:3000/api/inventario");
+    const stockRes = await fetch(`${BASE_URL}/api/inventario`);
     const inventario = await stockRes.json();
 
     // Limpiar tablas
@@ -33,7 +42,11 @@ async function cargarDatos() {
         <td>${new Date(pedido.fecha).toLocaleString()}</td>
         <td>
           ${pedido.estado}
-          ${pedido.estado === "Pendiente" && cantidadStock >= pedido.cantidad ? `<button class="cambiarEstado" data-id="${pedido.id}">Enviar</button>` : ""}
+          ${
+            pedido.estado === "Pendiente" && cantidadStock >= pedido.cantidad
+              ? `<button class="cambiarEstado" data-id="${pedido.id}">Enviar</button>`
+              : ""
+          }
         </td>
         <td>${cantidadStock}</td>
       `;
@@ -45,7 +58,7 @@ async function cargarDatos() {
       btn.addEventListener("click", async () => {
         const id = btn.getAttribute("data-id");
         try {
-          const res = await fetch(`http://localhost:3000/api/pedidos/${id}/estado`, {
+          const res = await fetch(`${BASE_URL}/api/pedidos/${id}/estado`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ estado: "Enviado" })
@@ -73,9 +86,13 @@ async function cargarDatos() {
     console.error("Error al cargar datos:", err);
   }
 }
+
+// =============================
+// 📦 Historial
+// =============================
 document.getElementById("btnHistorial").addEventListener("click", async () => {
   try {
-    const res = await fetch("http://localhost:3000/api/historial");
+    const res = await fetch(`${BASE_URL}/api/historial`);
     const data = await res.json();
 
     let html = "<h3>Historial de pedidos e inventario</h3><ul>";
@@ -90,17 +107,23 @@ document.getElementById("btnHistorial").addEventListener("click", async () => {
   }
 });
 
+// =============================
+// 📦 Exportar
+// =============================
 document.getElementById("btnPDF").addEventListener("click", () => {
-  window.open("http://localhost:3000/api/export/pdf", "_blank");
+  window.open(`${BASE_URL}/api/export/pdf`, "_blank");
 });
 
 document.getElementById("btnExcel").addEventListener("click", () => {
-  window.open("http://localhost:3000/api/export/excel", "_blank");
+  window.open(`${BASE_URL}/api/export/excel`, "_blank");
 });
 
 document.getElementById("btnWord").addEventListener("click", () => {
-  window.open("http://localhost:3000/api/export/word", "_blank");
+  window.open(`${BASE_URL}/api/export/word`, "_blank");
 });
 
+// =============================
+// 📦 Inicialización
+// =============================
 botonPedidos.addEventListener("click", cargarDatos);
 cargarDatos(); // carga inicial automática
