@@ -38,9 +38,11 @@ const pool = new Pool({
 
 // -------------------- RUTAS --------------------
 
-// Servir index.html
+// Sirve el frontend que está fuera de backend
+app.use(express.static(path.join(__dirname, "../frontend")));
+
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "fronted", "index.html"));
+  res.sendFile(path.join(__dirname, "../frontend", "index.html"));
 });
 
 // Ping de prueba
