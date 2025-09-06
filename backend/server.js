@@ -17,8 +17,6 @@ const __dirname = path.dirname(__filename);
 const app = express();
 app.use(express.json());
 
-
-
 // Configuración de PostgreSQL
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
