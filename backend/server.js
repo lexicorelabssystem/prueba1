@@ -17,8 +17,7 @@ const __dirname = path.dirname(__filename);
 const app = express();
 app.use(express.json());
 
-// Servir frontend desde carpeta "fronted"
-app.use(express.static(path.join(__dirname, "fronted")));
+
 
 // Configuración de PostgreSQL
 const pool = new Pool({
