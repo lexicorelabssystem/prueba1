@@ -4,8 +4,8 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",        // Para la API (Render Web Service)
-    "worker": "node bot.js",          // Para el bot (Render Background Worker)
+    "start": "node server.js",        
+    "worker": "node bot.js",          
     "dev": "nodemon server.js",
     "dev:worker": "nodemon bot.js",
     "test": "echo \"Error: no test specified\" && exit 1"
